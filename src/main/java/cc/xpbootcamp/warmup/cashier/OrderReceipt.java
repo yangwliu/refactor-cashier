@@ -53,11 +53,11 @@ public class OrderReceipt {
     }
 
     private void addTotalAmount(StringBuilder sb, double totalAmount) {
-        sb.append(TOTAL_AMOUNT_PREFIX).append('\t').append(totalAmount);
+        sb.append(TOTAL_AMOUNT_PREFIX).append(CharacterConst.BLANK).append(totalAmount);
     }
 
     private void addSalesTax(StringBuilder sb, double totSalesTx) {
-        sb.append(SALES_TAX_PREFIX).append('\t').append(totSalesTx);
+        sb.append(SALES_TAX_PREFIX).append(CharacterConst.BLANK).append(totSalesTx);
     }
 
     private double getSalesTaxOfLineItem(LineItem lineItem) {
@@ -66,13 +66,13 @@ public class OrderReceipt {
 
     private void addLineItem(StringBuilder output, LineItem lineItem) {
         output.append(lineItem.getDescription());
-        output.append('\t');
+        output.append(CharacterConst.BLANK);
         output.append(lineItem.getPrice());
-        output.append('\t');
+        output.append(CharacterConst.BLANK);
         output.append(lineItem.getQuantity());
-        output.append('\t');
+        output.append(CharacterConst.BLANK);
         output.append(lineItem.totalAmount());
-        output.append('\n');
+        output.append(CharacterConst.NEW_LINE);
     }
 
     private void addOrderBasicInfo(StringBuilder sb) {
