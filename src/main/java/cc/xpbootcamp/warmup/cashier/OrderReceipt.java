@@ -11,6 +11,7 @@ public class OrderReceipt {
 
     public static final String HEADER = "======Printing Orders======\n";
     public static final double TAX_RATE = .10;
+    public static final String SALES_TAX_PREFIX = "Sales Tax";
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -43,11 +44,15 @@ public class OrderReceipt {
         }
 
         // prints the state tax
-        output.append("Sales Tax").append('\t').append(totSalesTx);
+        addSalesTax(output, totSalesTx);
 
         // print total amount
         output.append("Total Amount").append('\t').append(totalAmount);
         return output.toString();
+    }
+
+    private void addSalesTax(StringBuilder output, double totSalesTx) {
+        output.append(SALES_TAX_PREFIX).append('\t').append(totSalesTx);
     }
 
     private double getSalesTaxOfLineItem(LineItem lineItem) {
