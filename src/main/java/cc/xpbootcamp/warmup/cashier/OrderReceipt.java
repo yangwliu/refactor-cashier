@@ -20,21 +20,21 @@ public class OrderReceipt {
     }
 
     public String printReceipt() {
-        StringBuilder output = new StringBuilder();
+        StringBuilder receiptStringBuilder = new StringBuilder();
 
         // print headers
-        addHeader(output);
+        addHeader(receiptStringBuilder);
 
         // print date, bill no, customer name
 //        output.append("Date - " + order.getDate();
-        addOrderBasicInfo(output);
+        addOrderBasicInfo(receiptStringBuilder);
 //        output.append(order.getCustomerLoyaltyNumber());
 
         // prints lineItems
         double totSalesTx = 0d;
         double totalAmount = 0d;
         for (LineItem lineItem : order.getLineItems()) {
-            addLineItem(output, lineItem);
+            addLineItem(receiptStringBuilder, lineItem);
 
             // calculate sales tax @ rate of 10%
             double salesTax = getSalesTaxOfLineItem(lineItem);
@@ -45,19 +45,19 @@ public class OrderReceipt {
         }
 
         // prints the state tax
-        addSalesTax(output, totSalesTx);
+        addSalesTax(receiptStringBuilder, totSalesTx);
 
         // print total amount
-        addTotalAmount(output, totalAmount);
-        return output.toString();
+        addTotalAmount(receiptStringBuilder, totalAmount);
+        return receiptStringBuilder.toString();
     }
 
-    private void addTotalAmount(StringBuilder output, double totalAmount) {
-        output.append(TOTAL_AMOUNT_PREFIX).append('\t').append(totalAmount);
+    private void addTotalAmount(StringBuilder sb, double totalAmount) {
+        sb.append(TOTAL_AMOUNT_PREFIX).append('\t').append(totalAmount);
     }
 
-    private void addSalesTax(StringBuilder output, double totSalesTx) {
-        output.append(SALES_TAX_PREFIX).append('\t').append(totSalesTx);
+    private void addSalesTax(StringBuilder sb, double totSalesTx) {
+        sb.append(SALES_TAX_PREFIX).append('\t').append(totSalesTx);
     }
 
     private double getSalesTaxOfLineItem(LineItem lineItem) {
@@ -75,12 +75,12 @@ public class OrderReceipt {
         output.append('\n');
     }
 
-    private void addOrderBasicInfo(StringBuilder output) {
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+    private void addOrderBasicInfo(StringBuilder sb) {
+        sb.append(order.getCustomerName());
+        sb.append(order.getCustomerAddress());
     }
 
-    private void addHeader(StringBuilder output) {
-        output.append(HEADER);
+    private void addHeader(StringBuilder sb) {
+        sb.append(HEADER);
     }
 }
