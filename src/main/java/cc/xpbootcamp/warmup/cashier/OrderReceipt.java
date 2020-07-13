@@ -24,13 +24,12 @@ public class OrderReceipt {
 
         // print date, bill no, customer name
 //        output.append("Date - " + order.getDate();
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+        addOrderBasicInfo(output);
 //        output.append(order.getCustomerLoyaltyNumber());
 
         // prints lineItems
         double totSalesTx = 0d;
-        double tot = 0d;
+        double totalAmount = 0d;
         for (LineItem lineItem : order.getLineItems()) {
             output.append(lineItem.getDescription());
             output.append('\t');
@@ -46,15 +45,20 @@ public class OrderReceipt {
             totSalesTx += salesTax;
 
             // calculate total amount of lineItem = price * quantity + 10 % sales tax
-            tot += lineItem.totalAmount() + salesTax;
+            totalAmount += lineItem.totalAmount() + salesTax;
         }
 
         // prints the state tax
         output.append("Sales Tax").append('\t').append(totSalesTx);
 
         // print total amount
-        output.append("Total Amount").append('\t').append(tot);
+        output.append("Total Amount").append('\t').append(totalAmount);
         return output.toString();
+    }
+
+    private void addOrderBasicInfo(StringBuilder output) {
+        output.append(order.getCustomerName());
+        output.append(order.getCustomerAddress());
     }
 
     private void addHeader(StringBuilder output) {
