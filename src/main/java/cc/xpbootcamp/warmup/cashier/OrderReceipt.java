@@ -26,20 +26,16 @@ public class OrderReceipt {
 
         addOrderBasicInfo(receiptStringBuilder);
 
-        double totSalesTx = 0d;
         double totalAmount = 0d;
         for (LineItem lineItem : order.getLineItems()) {
             addLineItem(receiptStringBuilder, lineItem);
 
-            double salesTax = getSalesTaxOfLineItem(lineItem);
-            totSalesTx += salesTax;
-
-            totalAmount += lineItem.totalAmount() + salesTax;
+            totalAmount += lineItem.totalAmount();
         }
-
+        double totSalesTx = totalAmount * TAX_RATE;
         addSalesTax(receiptStringBuilder, totSalesTx);
 
-        addTotalAmount(receiptStringBuilder, totalAmount);
+        addTotalAmount(receiptStringBuilder, totalAmount + totSalesTx);
         return receiptStringBuilder.toString();
     }
 
