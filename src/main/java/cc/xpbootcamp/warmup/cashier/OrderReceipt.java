@@ -24,8 +24,6 @@ public class OrderReceipt {
 
         addHeader(receiptStringBuilder);
 
-        addOrderBasicInfo(receiptStringBuilder);
-
         double totalAmount = 0d;
         for (LineItem lineItem : order.getLineItems()) {
             receiptStringBuilder.append(lineItem.getItemText());
@@ -45,11 +43,6 @@ public class OrderReceipt {
 
     private void addSalesTax(StringBuilder sb, double totSalesTx) {
         sb.append(SALES_TAX_PREFIX).append(CharacterConst.BLANK).append(totSalesTx);
-    }
-
-    private void addOrderBasicInfo(StringBuilder sb) {
-        sb.append(order.getCustomerName());
-        sb.append(order.getCustomerAddress());
     }
 
     private void addHeader(StringBuilder sb) {
