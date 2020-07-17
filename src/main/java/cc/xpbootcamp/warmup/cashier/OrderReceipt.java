@@ -14,6 +14,7 @@ public class OrderReceipt {
     public static final String HEADER = "======老王超市，值得信赖======\n";
     public static final String SALES_TAX_PREFIX = "税额:";
     public static final String TOTAL_AMOUNT_PREFIX = "总价:";
+    public static final String DISCOUNT_PREFIX = "折扣:";
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -38,7 +39,7 @@ public class OrderReceipt {
     }
 
     private void addDiscount(StringBuilder sb, Order order) {
-        sb.append("折扣:\t").append(order.getDiscountAmount());
+        sb.append(DISCOUNT_PREFIX).append(CharacterConst.BLANK).append(order.getDiscountAmount());
     }
 
     private void addTotalAmount(StringBuilder sb, double totalAmount) {

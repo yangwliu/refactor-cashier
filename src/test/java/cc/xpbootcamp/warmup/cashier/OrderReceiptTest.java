@@ -9,13 +9,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
 class OrderReceiptTest {
-    @Test
-    void shouldPrintCustomerInformationOnOrder() {
-        Order order = new Order(new ArrayList<LineItem>(), LocalDateTime.now());
-        OrderReceipt receipt = new OrderReceipt(order);
-
-        receipt.printReceipt();
-    }
 
     @Test
     public void should_print_line_item_and_sales_tax_information_when_print_receipt_given_not_discount_day() {
