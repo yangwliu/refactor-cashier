@@ -32,7 +32,7 @@ public class Order {
     }
 
     private double getBasicTotalAmount() {
-        return lineItemList.stream().map(LineItem::totalAmount).reduce(.0d, Double::sum);
+        return lineItemList.stream().map(LineItem::getTotalAmount).reduce(.0d, Double::sum);
 
     }
 

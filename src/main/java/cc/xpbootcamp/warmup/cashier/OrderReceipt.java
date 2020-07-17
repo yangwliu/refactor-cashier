@@ -26,9 +26,7 @@ public class OrderReceipt {
         addHeader(receiptStringBuilder);
         addOrderDate(receiptStringBuilder, order);
 
-        for (LineItem lineItem : order.getLineItems()) {
-            receiptStringBuilder.append(lineItem.getItemText());
-        }
+        order.getLineItems().forEach(item -> receiptStringBuilder.append(getItemText(item)));
 
         addSalesTax(receiptStringBuilder, order.getTotSalesTx());
 
@@ -60,5 +58,22 @@ public class OrderReceipt {
 
     private void addHeader(StringBuilder sb) {
         sb.append(HEADER);
+    }
+
+    private String getItemText(LineItem lineItem) {
+        return new StringBuilder()
+            .append(lineItem.getDesc())
+            .append(CharacterConst.COMMA)
+            .append(" ")
+            .append(lineItem.getPrice())
+            .append(" ")
+            .append(CharacterConst.MULTIPLY_SYMBOL)
+            .append(" ")
+            .append(lineItem.getQty())
+            .append(CharacterConst.COMMA)
+            .append(" ")
+            .append(lineItem.getTotalAmount())
+            .append(CharacterConst.NEW_LINE)
+            .toString();
     }
 }
