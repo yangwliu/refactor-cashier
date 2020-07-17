@@ -11,19 +11,19 @@ public class LineItem {
 		this.qty = qty;
 	}
 
-	public String getDescription() {
-		return desc;
+	public String getItemText() {
+		return new StringBuilder()
+				.append(desc)
+				.append(CharacterConst.BLANK)
+				.append(price).append(CharacterConst.BLANK)
+				.append(qty)
+				.append(CharacterConst.BLANK)
+				.append(totalAmount())
+				.append(CharacterConst.NEW_LINE)
+				.toString();
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public int getQuantity() {
-		return qty;
-	}
-
-    double totalAmount() {
+	double totalAmount() {
         return price * qty;
     }
 }
