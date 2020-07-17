@@ -14,10 +14,10 @@ public class LineItem {
 	public String getItemText() {
 		return new StringBuilder()
 				.append(desc)
-				.append(CharacterConst.BLANK)
-				.append(price).append(CharacterConst.BLANK)
+				.append(", ")
+				.append(price).append(" x ")
 				.append(qty)
-				.append(CharacterConst.BLANK)
+				.append(", ")
 				.append(totalAmount())
 				.append(CharacterConst.NEW_LINE)
 				.toString();
